@@ -13,18 +13,18 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
   const { user, signOut } = useAuth();
 
   return (
-    <header className="bg-black/90 backdrop-blur-sm border-b border-royal-600/20">
+    <header className="nav-glass">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <div className="w-8 h-8 bg-royal-600 rounded-lg flex items-center justify-center royal-glow">
+              <div className="w-8 h-8 glass rounded-lg flex items-center justify-center glow-soft">
                 <Clock className="w-5 h-5 text-white" />
               </div>
               <span className="ml-2 text-xl font-bold text-white">Sith Cantina</span>
             </div>
             <div className="ml-8">
-              <h1 className="text-lg font-medium text-gray-200">{title}</h1>
+              <h1 className="text-lg font-medium text-white/90">{title}</h1>
             </div>
           </div>
 
@@ -32,11 +32,11 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
             {showCart && (
               <button
                 onClick={onCartClick}
-                className="relative p-2 text-gray-400 hover:text-white transition-colors duration-200 hover-lift"
+                className="relative p-2 text-white/70 hover:text-white transition-colors duration-200 hover-lift glass rounded-lg"
               >
                 <ShoppingCart className="w-6 h-6" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-royal-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center royal-pulse">
+                  <span className="absolute -top-1 -right-1 glass-pulse text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}
@@ -45,19 +45,19 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
             
             <div className="flex items-center space-x-3 glass rounded-lg px-3 py-2">
               <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-royal-600 rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 glass rounded-full flex items-center justify-center">
                   <User className="w-4 h-4 text-white" />
                 </div>
                 <div>
                   <span className="text-sm font-medium text-white">{user?.full_name}</span>
                   {user?.role === 'student' && user?.registration_number && (
-                    <div className="text-xs text-gray-400">({user.registration_number})</div>
+                    <div className="text-xs text-white/60">({user.registration_number})</div>
                   )}
                 </div>
               </div>
               <button
                 onClick={signOut}
-                className="p-1 text-gray-400 hover:text-royal-400 transition-colors duration-200"
+                className="p-1 text-white/60 hover:text-white transition-colors duration-200"
               >
                 <LogOut className="w-4 h-4" />
               </button>
