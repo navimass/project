@@ -9,7 +9,7 @@
 }
 
 body {
-  background: #0a0a0a;
+  background: #000000;
   color: #ffffff;
   overflow-x: hidden;
 }
@@ -24,78 +24,78 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #dc2626, #991b1b);
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #ef4444, #dc2626);
+  background: linear-gradient(45deg, #3b82f6, #2563eb);
 }
 
-/* Subtle red glow for accents */
+/* Royal blue glow effects */
+.royal-glow {
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+}
+
+.royal-glow-strong {
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6), 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+/* Sith red accent glow */
 .sith-glow {
-  box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.4);
 }
 
-.sith-glow-strong {
-  box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+/* Galactic border effects */
+.galactic-border {
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  background: linear-gradient(45deg, rgba(37, 99, 235, 0.05), transparent);
 }
 
-/* Subtle border animations */
-.sith-border {
-  border: 1px solid rgba(220, 38, 38, 0.3);
-  background: linear-gradient(45deg, rgba(220, 38, 38, 0.05), transparent);
-}
-
-.sith-border:hover {
-  border-color: rgba(220, 38, 38, 0.5);
-  background: linear-gradient(45deg, rgba(220, 38, 38, 0.1), transparent);
+.galactic-border:hover {
+  border-color: rgba(37, 99, 235, 0.5);
+  background: linear-gradient(45deg, rgba(37, 99, 235, 0.1), transparent);
 }
 
 /* Pulse animation for important elements */
-@keyframes sith-pulse {
+@keyframes royal-pulse {
   0%, 100% { 
-    box-shadow: 0 0 5px rgba(220, 38, 38, 0.3);
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
   }
   50% { 
-    box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
   }
 }
 
-.sith-pulse {
-  animation: sith-pulse 2s infinite;
+.royal-pulse {
+  animation: royal-pulse 2s infinite;
 }
 
-/* Gradient backgrounds */
-.sith-gradient {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%);
-}
-
-.sith-card {
-  background: linear-gradient(135deg, rgba(26, 5, 5, 0.3) 0%, rgba(10, 10, 10, 0.8) 100%);
+/* Card styles */
+.galactic-card {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(220, 38, 38, 0.2);
+  border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
-.sith-card:hover {
-  background: linear-gradient(135deg, rgba(26, 5, 5, 0.4) 0%, rgba(10, 10, 10, 0.9) 100%);
-  border-color: rgba(220, 38, 38, 0.4);
-}
-
-/* Text effects */
-.sith-text {
-  color: #dc2626;
-}
-
-.sith-text-light {
-  color: #ef4444;
-}
-
-.sith-text-dark {
-  color: #991b1b;
+.galactic-card:hover {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.15) 0%, rgba(0, 0, 0, 0.9) 100%);
+  border-color: rgba(37, 99, 235, 0.4);
 }
 
 /* Button styles */
+.royal-button {
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+  border: 1px solid rgba(37, 99, 235, 0.5);
+  transition: all 0.3s ease;
+}
+
+.royal-button:hover {
+  background: linear-gradient(45deg, #3b82f6, #2563eb);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+  transform: translateY(-1px);
+}
+
 .sith-button {
   background: linear-gradient(45deg, #dc2626, #991b1b);
   border: 1px solid rgba(220, 38, 38, 0.5);
@@ -108,18 +108,14 @@ body {
   transform: translateY(-1px);
 }
 
-.sith-button:active {
-  transform: translateY(0);
-}
-
 /* Loading animations */
-@keyframes sith-spin {
+@keyframes royal-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.sith-spin {
-  animation: sith-spin 1s linear infinite;
+.royal-spin {
+  animation: royal-spin 1s linear infinite;
 }
 
 /* Floating elements */
@@ -132,7 +128,7 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Subtle hover effects */
+/* Hover effects */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -144,7 +140,7 @@ body {
 
 /* Glass morphism effect */
 .glass {
-  background: rgba(26, 5, 5, 0.1);
+  background: rgba(30, 58, 138, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -173,4 +169,63 @@ body {
 .status-cancelled {
   color: #ef4444;
   background: rgba(239, 68, 68, 0.1);
+}
+
+/* Easter egg styles */
+.easter-egg-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.8), 0 0 30px rgba(37, 99, 235, 0.4);
+  }
+}
+
+/* Robot animation */
+.robot-container {
+  animation: robotHover 4s ease-in-out infinite;
+}
+
+@keyframes robotHover {
+  0%, 100% { 
+    transform: translateY(0px) rotateY(0deg);
+  }
+  25% { 
+    transform: translateY(-10px) rotateY(5deg);
+  }
+  50% { 
+    transform: translateY(-5px) rotateY(0deg);
+  }
+  75% { 
+    transform: translateY(-15px) rotateY(-5deg);
+  }
+}
+
+/* Special menu styles */
+.special-menu-item {
+  background: linear-gradient(45deg, rgba(220, 38, 38, 0.1), rgba(37, 99, 235, 0.1));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.special-menu-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(45deg, #dc2626, #2563eb);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.special-menu-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.3), 0 0 20px rgba(220, 38, 38, 0.2);
 }

@@ -7,6 +7,19 @@ export default {
         'inter': ['Inter', 'sans-serif'],
       },
       colors: {
+        'royal': {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
+        },
         'sith': {
           50: '#fef2f2',
           100: '#fee2e2',
@@ -31,7 +44,7 @@ export default {
           700: '#334155',
           800: '#1e293b',
           900: '#0f172a',
-          950: '#0a0a0a',
+          950: '#000000',
         },
       },
       animation: {
@@ -39,13 +52,28 @@ export default {
         'bounce-slow': 'bounce 2s infinite',
         'spin-slow': 'spin 3s linear infinite',
         'float': 'float 3s ease-in-out infinite',
+        'glow': 'glow 2s ease-in-out infinite alternate',
+        'robot-hover': 'robotHover 4s ease-in-out infinite',
       },
       backgroundImage: {
-        'sith-gradient': 'linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%)',
-        'sith-card': 'linear-gradient(135deg, rgba(26, 5, 5, 0.3) 0%, rgba(10, 10, 10, 0.8) 100%)',
+        'galactic-gradient': 'linear-gradient(135deg, #000000 0%, #1e3a8a 30%, #000000 70%, #450a0a 100%)',
+        'royal-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #1d4ed8 100%)',
+        'sith-gradient': 'linear-gradient(135deg, #450a0a 0%, #7f1d1d 50%, #450a0a 100%)',
       },
       backdropBlur: {
         xs: '2px',
+      },
+      keyframes: {
+        glow: {
+          '0%': { boxShadow: '0 0 5px rgba(37, 99, 235, 0.5)' },
+          '100%': { boxShadow: '0 0 20px rgba(37, 99, 235, 0.8), 0 0 30px rgba(37, 99, 235, 0.4)' },
+        },
+        robotHover: {
+          '0%, 100%': { transform: 'translateY(0px) rotateY(0deg)' },
+          '25%': { transform: 'translateY(-10px) rotateY(5deg)' },
+          '50%': { transform: 'translateY(-5px) rotateY(0deg)' },
+          '75%': { transform: 'translateY(-15px) rotateY(-5deg)' },
+        },
       },
     },
   },

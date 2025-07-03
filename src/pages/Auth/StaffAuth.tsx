@@ -48,7 +48,7 @@ const StaffAuth: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen sith-gradient flex items-center justify-center p-4">
+    <div className="min-h-screen bg-galactic-gradient flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-8">
@@ -68,7 +68,7 @@ const StaffAuth: React.FC = () => {
         </div>
 
         {/* Form */}
-        <div className="sith-card rounded-2xl p-8">
+        <div className="galactic-card rounded-2xl p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
               <div className="bg-red-900/30 border border-red-500/50 rounded-lg p-3">

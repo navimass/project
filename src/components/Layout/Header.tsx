@@ -13,12 +13,12 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
   const { user, signOut } = useAuth();
 
   return (
-    <header className="bg-black/90 backdrop-blur-sm border-b border-sith-600/20">
+    <header className="bg-black/90 backdrop-blur-sm border-b border-royal-600/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <div className="w-8 h-8 bg-sith-600 rounded-lg flex items-center justify-center sith-glow">
+              <div className="w-8 h-8 bg-royal-600 rounded-lg flex items-center justify-center royal-glow">
                 <Clock className="w-5 h-5 text-white" />
               </div>
               <span className="ml-2 text-xl font-bold text-white">Sith Cantina</span>
@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
               >
                 <ShoppingCart className="w-6 h-6" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-sith-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center sith-pulse">
+                  <span className="absolute -top-1 -right-1 bg-royal-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center royal-pulse">
                     {cartCount}
                   </span>
                 )}
@@ -45,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
             
             <div className="flex items-center space-x-3 glass rounded-lg px-3 py-2">
               <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-sith-600 rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 bg-royal-600 rounded-full flex items-center justify-center">
                   <User className="w-4 h-4 text-white" />
                 </div>
                 <div>
@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
               </div>
               <button
                 onClick={signOut}
-                className="p-1 text-gray-400 hover:text-sith-400 transition-colors duration-200"
+                className="p-1 text-gray-400 hover:text-royal-400 transition-colors duration-200"
               >
                 <LogOut className="w-4 h-4" />
               </button>

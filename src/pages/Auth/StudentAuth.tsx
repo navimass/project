@@ -50,7 +50,7 @@ const StudentAuth: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen sith-gradient flex items-center justify-center p-4">
+    <div className="min-h-screen bg-galactic-gradient flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-8">
@@ -59,7 +59,7 @@ const StudentAuth: React.FC = () => {
             Back to Home
           </Link>
           <div className="flex items-center justify-center mb-4">
-            <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mr-3">
+            <div className="w-12 h-12 bg-royal-600 rounded-xl flex items-center justify-center mr-3 royal-glow">
               <Users className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold text-white">Student Portal</span>
@@ -70,7 +70,7 @@ const StudentAuth: React.FC = () => {
         </div>
 
         {/* Form */}
-        <div className="sith-card rounded-2xl p-8">
+        <div className="galactic-card rounded-2xl p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
               <div className="bg-red-900/30 border border-red-500/50 rounded-lg p-3">
@@ -90,7 +90,7 @@ const StudentAuth: React.FC = () => {
                     required
                     value={formData.fullName}
                     onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
-                    className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                    className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-royal-500 focus:border-transparent text-white placeholder-gray-400"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -109,7 +109,7 @@ const StudentAuth: React.FC = () => {
                     required
                     value={formData.registrationNumber}
                     onChange={(e) => setFormData(prev => ({ ...prev, registrationNumber: e.target.value }))}
-                    className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                    className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-royal-500 focus:border-transparent text-white placeholder-gray-400"
                     placeholder="Enter your registration number"
                   />
                 </div>
@@ -127,7 +127,7 @@ const StudentAuth: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                  className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-royal-500 focus:border-transparent text-white placeholder-gray-400"
                   placeholder="Enter your email"
                 />
               </div>
@@ -145,7 +145,7 @@ const StudentAuth: React.FC = () => {
                     required
                     value={formData.mobileNumber}
                     onChange={(e) => setFormData(prev => ({ ...prev, mobileNumber: e.target.value }))}
-                    className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                    className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-royal-500 focus:border-transparent text-white placeholder-gray-400"
                     placeholder="Enter your mobile number"
                   />
                 </div>
@@ -163,7 +163,7 @@ const StudentAuth: React.FC = () => {
                   required
                   value={formData.password}
                   onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                  className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                  className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-royal-500 focus:border-transparent text-white placeholder-gray-400"
                   placeholder="Enter your password"
                 />
               </div>
@@ -181,7 +181,7 @@ const StudentAuth: React.FC = () => {
                     required
                     value={formData.confirmPassword}
                     onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                    className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                    className="w-full pl-10 pr-4 py-3 bg-black/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-royal-500 focus:border-transparent text-white placeholder-gray-400"
                     placeholder="Confirm your password"
                   />
                 </div>
@@ -191,7 +191,7 @@ const StudentAuth: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-500 transition-colors duration-200 font-medium disabled:opacity-50 hover-lift"
+              className="w-full royal-button text-white py-3 px-4 rounded-lg font-medium disabled:opacity-50"
             >
               {loading ? 'Please wait...' : isLogin ? 'Sign In' : 'Create Account'}
             </button>
@@ -200,7 +200,7 @@ const StudentAuth: React.FC = () => {
           <div className="mt-6 text-center">
             <button
               onClick={() => setIsLogin(!isLogin)}
-              className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
+              className="text-royal-400 hover:text-royal-300 font-medium transition-colors"
             >
               {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
             </button>
