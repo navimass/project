@@ -1,0 +1,257 @@
+import React, { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+
+const ThreeJsCursor: React.FC = () => {
+  const mountRef = useRef<HTMLDivElement>(null);
+  const mousePosition = useRef({ x: 0, y: 0 });
+  const targetPosition = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (!mountRef.current) return;
+
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
+    mountRef.current.appendChild(renderer.domElement);
+
+    // Create lightsaber trail particles
+    const particleCount = 50;
+    const particles = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    const sizes = new Float32Array(particleCount);
+
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3] = 0;
+      positions[i * 3 + 1] = 0;
+      positions[i * 3 + 2] = 0;
+      
+      // Lightsaber blue color
+      colors[i * 3] = 0.0;     // R
+      colors[i * 3 + 1] = 0.8; // G
+      colors[i * 3 + 2] = 1.0; // B
+      
+      sizes[i] = Math.random() * 5 + 2;
+    }
+
+    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    particles.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+    // Particle material with glow effect
+    const particleMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 }
+      },
+      vertexShader: `
+        attribute float size;
+        attribute vec3 color;
+        varying vec3 vColor;
+        varying float vSize;
+        uniform float time;
+        
+        void main() {
+          vColor = color;
+          vSize = size;
+          
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = size * (300.0 / -mvPosition.z) * (1.0 + sin(time * 5.0 + position.x * 10.0) * 0.2);
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vColor;
+        varying float vSize;
+        uniform float time;
+        
+        void main() {
+          vec2 center = gl_PointCoord - 0.5;
+          float dist = length(center);
+          
+          if (dist > 0.5) discard;
+          
+          float alpha = 1.0 - (dist * 2.0);
+          alpha *= (0.8 + 0.2 * sin(time * 10.0));
+          
+          vec3 glowColor = vColor + vec3(0.2, 0.2, 0.4) * (1.0 - dist);
+          
+          gl_FragColor = vec4(glowColor, alpha);
+        }
+      `,
+      blending: THREE.AdditiveBlending,
+      transparent: true,
+      vertexColors: true
+    });
+
+    const particleSystem = new THREE.Points(particles, particleMaterial);
+    scene.add(particleSystem);
+
+    // Create Force energy rings
+    const ringGeometry = new THREE.RingGeometry(0.5, 0.7, 16);
+    const ringMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 },
+        opacity: { value: 0.3 }
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform float time;
+        uniform float opacity;
+        varying vec2 vUv;
+        
+        void main() {
+          vec2 center = vUv - 0.5;
+          float dist = length(center);
+          float angle = atan(center.y, center.x);
+          
+          float wave = sin(angle * 8.0 + time * 5.0) * 0.1;
+          float alpha = opacity * (1.0 - abs(dist - 0.6 + wave) * 10.0);
+          alpha = max(0.0, alpha);
+          
+          vec3 color = vec3(0.0, 0.8, 1.0) + vec3(0.2, 0.0, 0.4) * sin(time * 3.0);
+          
+          gl_FragColor = vec4(color, alpha);
+        }
+      `,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      side: THREE.DoubleSide
+    });
+
+    const rings = [];
+    for (let i = 0; i < 3; i++) {
+      const ring = new THREE.Mesh(ringGeometry, ringMaterial.clone());
+      ring.position.z = -i * 0.2;
+      ring.rotation.z = (i * Math.PI) / 3;
+      rings.push(ring);
+      scene.add(ring);
+    }
+
+    camera.position.z = 5;
+
+    // Mouse tracking
+    const handleMouseMove = (event: MouseEvent) => {
+      targetPosition.current.x = (event.clientX / window.innerWidth) * 2 - 1;
+      targetPosition.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    // Trail positions array
+    const trailPositions: Array<{ x: number; y: number; age: number }> = [];
+
+    // Animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      const time = Date.now() * 0.001;
+
+      // Smooth cursor following
+      mousePosition.current.x += (targetPosition.current.x - mousePosition.current.x) * 0.1;
+      mousePosition.current.y += (targetPosition.current.y - mousePosition.current.y) * 0.1;
+
+      // Update trail
+      trailPositions.push({
+        x: mousePosition.current.x * 3,
+        y: mousePosition.current.y * 3,
+        age: 0
+      });
+
+      // Remove old trail points
+      for (let i = trailPositions.length - 1; i >= 0; i--) {
+        trailPositions[i].age += 0.02;
+        if (trailPositions[i].age > 1 || trailPositions.length > particleCount) {
+          trailPositions.splice(i, 1);
+        }
+      }
+
+      // Update particle positions
+      const positions = particles.attributes.position.array as Float32Array;
+      const colors = particles.attributes.color.array as Float32Array;
+
+      for (let i = 0; i < particleCount; i++) {
+        if (i < trailPositions.length) {
+          const trail = trailPositions[trailPositions.length - 1 - i];
+          positions[i * 3] = trail.x;
+          positions[i * 3 + 1] = trail.y;
+          positions[i * 3 + 2] = Math.sin(time * 2 + i * 0.1) * 0.2;
+
+          // Color transition based on age
+          const intensity = 1 - trail.age;
+          colors[i * 3] = intensity * 0.2;     // R
+          colors[i * 3 + 1] = intensity * 0.8; // G
+          colors[i * 3 + 2] = intensity * 1.0; // B
+        } else {
+          // Hide unused particles
+          positions[i * 3] = 1000;
+          positions[i * 3 + 1] = 1000;
+          positions[i * 3 + 2] = 1000;
+        }
+      }
+
+      particles.attributes.position.needsUpdate = true;
+      particles.attributes.color.needsUpdate = true;
+
+      // Update rings
+      rings.forEach((ring, index) => {
+        ring.rotation.z += 0.01 * (index + 1);
+        ring.position.x = mousePosition.current.x * 2;
+        ring.position.y = mousePosition.current.y * 2;
+        ring.material.uniforms.time.value = time;
+        
+        // Scale based on mouse movement speed
+        const speed = Math.sqrt(
+          Math.pow(targetPosition.current.x - mousePosition.current.x, 2) +
+          Math.pow(targetPosition.current.y - mousePosition.current.y, 2)
+        );
+        ring.scale.setScalar(1 + speed * 2);
+      });
+
+      // Update particle material
+      particleMaterial.uniforms.time.value = time;
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    // Handle window resize
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+      if (mountRef.current && renderer.domElement) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
+      renderer.dispose();
+    };
+  }, []);
+
+  return (
+    <div
+      ref={mountRef}
+      className="fixed inset-0 pointer-events-none z-50"
+      style={{ mixBlendMode: 'screen' }}
+    />
+  );
+};
+
+export default ThreeJsCursor;
