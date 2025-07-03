@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
   const { user, signOut } = useAuth();
 
   return (
-    <header className="nav-glass">
+    <header className="nav-glass relative z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -21,10 +21,10 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
               <div className="w-8 h-8 glass rounded-lg flex items-center justify-center glow-soft">
                 <Clock className="w-5 h-5 text-white" />
               </div>
-              <span className="ml-2 text-xl font-bold text-white">Sith Cantina</span>
+              <span className="ml-2 text-xl font-bold text-white font-heading">Sith Cantina</span>
             </div>
             <div className="ml-8">
-              <h1 className="text-lg font-medium text-white/90">{title}</h1>
+              <h1 className="text-lg font-medium text-white/90 font-body">{title}</h1>
             </div>
           </div>
 
@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
               >
                 <ShoppingCart className="w-6 h-6" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 glass-pulse text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 glass-pulse text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-heading">
                     {cartCount}
                   </span>
                 )}
@@ -49,9 +49,9 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
                   <User className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <span className="text-sm font-medium text-white">{user?.full_name}</span>
+                  <span className="text-sm font-medium text-white font-body">{user?.full_name}</span>
                   {user?.role === 'student' && user?.registration_number && (
-                    <div className="text-xs text-white/60">({user.registration_number})</div>
+                    <div className="text-xs text-white/60 font-body">({user.registration_number})</div>
                   )}
                 </div>
               </div>

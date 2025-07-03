@@ -29,7 +29,7 @@ const Toast: React.FC<ToastProps> = ({ message, type, onClose, duration = 3000 }
         ) : (
           <AlertCircle className="w-5 h-5 text-red-400" />
         )}
-        <span className="text-sm font-medium flex-1 text-white">{message}</span>
+        <span className="text-sm font-medium flex-1 text-white font-body">{message}</span>
         <button
           onClick={onClose}
           className="p-1 hover:bg-white/10 rounded transition-colors"
