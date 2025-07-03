@@ -192,7 +192,7 @@ const SpecialMenu: React.FC<SpecialMenuProps> = ({ isOpen, onClose }) => {
               <div className="text-2xl mb-2">🌟</div>
               <p className="text-gray-300 text-sm">
                 <strong className="text-royal-400">Easter Egg Unlocked!</strong> You've discovered the secret droid menu. 
-                These items don't actually exist, but wouldn't it be cool if they did? 
+                These items don't actually exist, but wouldn\'t it be cool if they did? 
                 The droid will remember you found this! 🤖✨
               </p>
             </motion.div>
