@@ -2,21 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 * {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-  background: #000;
-  color: #fff;
+  background: #0a0a0a;
+  color: #ffffff;
   overflow-x: hidden;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -24,158 +24,153 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #00d4ff, #0099cc);
-  border-radius: 4px;
+  background: linear-gradient(45deg, #dc2626, #991b1b);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #0099cc, #00d4ff);
+  background: linear-gradient(45deg, #ef4444, #dc2626);
 }
 
-/* Glowing text effect */
-.glow-text {
-  text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 30px #00d4ff;
+/* Subtle red glow for accents */
+.sith-glow {
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
 }
 
-.glow-text-yellow {
-  text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700;
+.sith-glow-strong {
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
 }
 
-.glow-text-red {
-  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+/* Subtle border animations */
+.sith-border {
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  background: linear-gradient(45deg, rgba(220, 38, 38, 0.05), transparent);
 }
 
-/* Holographic border effect */
-.holo-border {
-  border: 2px solid transparent;
-  background: linear-gradient(45deg, #00d4ff, #0099cc) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: exclude;
-  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
+.sith-border:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+  background: linear-gradient(45deg, rgba(220, 38, 38, 0.1), transparent);
 }
 
-/* Lightsaber glow effect */
-.lightsaber-glow {
-  box-shadow: 
-    0 0 5px #00d4ff,
-    0 0 10px #00d4ff,
-    0 0 15px #00d4ff,
-    0 0 20px #00d4ff,
-    inset 0 0 5px #00d4ff;
-}
-
-.lightsaber-glow-red {
-  box-shadow: 
-    0 0 5px #ff0000,
-    0 0 10px #ff0000,
-    0 0 15px #ff0000,
-    0 0 20px #ff0000,
-    inset 0 0 5px #ff0000;
-}
-
-.lightsaber-glow-green {
-  box-shadow: 
-    0 0 5px #00ff00,
-    0 0 10px #00ff00,
-    0 0 15px #00ff00,
-    0 0 20px #00ff00,
-    inset 0 0 5px #00ff00;
-}
-
-/* Hyperspace animation */
-@keyframes hyperspace {
-  0% { transform: translateZ(0) scale(1); }
-  100% { transform: translateZ(1000px) scale(0); }
-}
-
-.hyperspace {
-  animation: hyperspace 0.5s ease-in-out;
-}
-
-/* Hologram flicker */
-@keyframes hologram-flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-
-.hologram {
-  animation: hologram-flicker 2s infinite;
-  background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 204, 0.1));
-  border: 1px solid rgba(0, 212, 255, 0.3);
-}
-
-/* Force lightning effect */
-@keyframes force-lightning {
+/* Pulse animation for important elements */
+@keyframes sith-pulse {
   0%, 100% { 
-    box-shadow: 0 0 5px #9d4edd, 0 0 10px #9d4edd, 0 0 15px #9d4edd;
+    box-shadow: 0 0 5px rgba(220, 38, 38, 0.3);
   }
   50% { 
-    box-shadow: 0 0 10px #c77dff, 0 0 20px #c77dff, 0 0 30px #c77dff;
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
   }
 }
 
-.force-lightning {
-  animation: force-lightning 1s infinite;
+.sith-pulse {
+  animation: sith-pulse 2s infinite;
 }
 
-/* Pulse animation for buttons */
-@keyframes pulse-glow {
-  0%, 100% { 
-    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
-  }
-  50% { 
-    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
-  }
+/* Gradient backgrounds */
+.sith-gradient {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%);
 }
 
-.pulse-glow {
-  animation: pulse-glow 2s infinite;
+.sith-card {
+  background: linear-gradient(135deg, rgba(26, 5, 5, 0.3) 0%, rgba(10, 10, 10, 0.8) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(220, 38, 38, 0.2);
 }
 
-/* Data stream effect */
-@keyframes data-stream {
-  0% { transform: translateY(-100%); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
+.sith-card:hover {
+  background: linear-gradient(135deg, rgba(26, 5, 5, 0.4) 0%, rgba(10, 10, 10, 0.9) 100%);
+  border-color: rgba(220, 38, 38, 0.4);
 }
 
-.data-stream {
-  animation: data-stream 3s linear infinite;
-}
-
-/* Rebel Alliance orange */
-.rebel-orange {
-  color: #ff6b35;
-}
-
-.bg-rebel-orange {
-  background-color: #ff6b35;
-}
-
-/* Imperial red */
-.imperial-red {
+/* Text effects */
+.sith-text {
   color: #dc2626;
 }
 
-.bg-imperial-red {
-  background-color: #dc2626;
+.sith-text-light {
+  color: #ef4444;
 }
 
-/* Jedi blue */
-.jedi-blue {
-  color: #00d4ff;
+.sith-text-dark {
+  color: #991b1b;
 }
 
-.bg-jedi-blue {
-  background-color: #00d4ff;
+/* Button styles */
+.sith-button {
+  background: linear-gradient(45deg, #dc2626, #991b1b);
+  border: 1px solid rgba(220, 38, 38, 0.5);
+  transition: all 0.3s ease;
 }
 
-/* Sith purple */
-.sith-purple {
-  color: #9d4edd;
+.sith-button:hover {
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
+  transform: translateY(-1px);
 }
 
-.bg-sith-purple {
-  background-color: #9d4edd;
+.sith-button:active {
+  transform: translateY(0);
+}
+
+/* Loading animations */
+@keyframes sith-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.sith-spin {
+  animation: sith-spin 1s linear infinite;
+}
+
+/* Floating elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Subtle hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(26, 5, 5, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Status colors */
+.status-pending {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.status-processing {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.status-ready {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.status-completed {
+  color: #6b7280;
+  background: rgba(107, 114, 128, 0.1);
+}
+
+.status-cancelled {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
 }
