@@ -49,7 +49,6 @@ const ThreeJsCursor: React.FC = () => {
       },
       vertexShader: `
         attribute float size;
-        attribute vec3 color;
         varying vec3 vColor;
         varying float vSize;
         uniform float time;
