@@ -1,29 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Clock, Users, ChefHat, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import ThreeJsRobot from '../components/Common/ThreeJsRobot';
-import SpecialMenu from '../components/Common/SpecialMenu';
 
 const Landing: React.FC = () => {
-  const [isSpecialMenuOpen, setIsSpecialMenuOpen] = useState(false);
-  const [robotClicks, setRobotClicks] = useState(0);
-
-  const handleRobotClick = () => {
-    setRobotClicks(prev => prev + 1);
-    
-    if (robotClicks === 0) {
-      alert('🤖 Beep boop! You found me! Click me 2 more times to unlock something special...');
-    } else if (robotClicks === 1) {
-      alert('🤖 *excited droid noises* Almost there! One more click!');
-    } else if (robotClicks === 2) {
-      alert('🤖 BEEP BEEP! Secret menu unlocked! Welcome to the hidden galactic cantina!');
-      setIsSpecialMenuOpen(true);
-    } else {
-      // After unlocking, always show menu
-      setIsSpecialMenuOpen(true);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-galactic-gradient relative overflow-hidden">
       {/* Animated background elements */}
@@ -124,25 +103,7 @@ const Landing: React.FC = () => {
             <p className="text-gray-400">Get notified when your order is ready for pickup</p>
           </div>
         </div>
-
-        {/* Easter Egg Hint */}
-        {robotClicks === 0 && (
-          <div className="mt-16 text-center">
-            <p className="text-gray-500 text-sm">
-              👀 Psst... there might be a friendly droid hiding somewhere on this page...
-            </p>
-          </div>
-        )}
       </main>
-
-      {/* Three.js Robot (Easter Egg) */}
-      <ThreeJsRobot onRobotClick={handleRobotClick} />
-
-      {/* Special Menu Modal */}
-      <SpecialMenu 
-        isOpen={isSpecialMenuOpen} 
-        onClose={() => setIsSpecialMenuOpen(false)} 
-      />
     </div>
   );
 };
